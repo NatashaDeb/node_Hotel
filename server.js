@@ -4,6 +4,7 @@ const db = require('./db');
 const Person = require('./models/person')
 const MenuItem = require('./models/menuItem');
 const bodyParser = require('body-parser');
+require('dotenv').config(); //to inform server dotenv file is present and from there we will be using some private variables 
 
 app.use(bodyParser.json()); //its for json data which will be parsed automatically to object and will be stored in req.body
 
@@ -19,6 +20,8 @@ const menuItemsRoutes = require('./routes/menuRouter')
 app.use('/person', personRoutes);
 app.use('/menu', menuItemsRoutes);
 
-app.listen(3000, ()=>{
+const PORT = process.env.PORT || 3000; //if port value is present use that else use 3000
+
+app.listen(PORT, ()=>{
     console.log("Server is Running");
 })
